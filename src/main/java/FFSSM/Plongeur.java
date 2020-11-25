@@ -2,11 +2,12 @@ package FFSSM;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Plongeur extends Personne {
 
     public int niveau;
-    public ArrayList<Licence> licences = new ArrayList<>();
+    public List<Licence> licences = new ArrayList<>();
 
     public Plongeur(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance, int niveau, GroupeSanguin gs) {
         super(numeroINSEE, nom, prenom, adresse, telephone, naissance, gs);

@@ -26,7 +26,7 @@ public class Moniteur extends Personne {
      */
     public Optional<Club> employeurActuel() throws Exception {
         if(emplois.isEmpty()) throw new Exception("Aucun emploi");
-        if(emplois.get(emplois.size()-1).estTerminee()) throw new Exception("Dernier emploi terminé");
+        if(emplois().get(emplois.size()-1).estTerminee()) throw new Exception("Dernier emploi terminé");
         return Optional.ofNullable(emplois.get(emplois.size()-1).getEmployeur());
     }
     

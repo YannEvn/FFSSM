@@ -4,23 +4,23 @@
 package FFSSM;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Plongee {
-    
+
     public Site lieu;
-    
+
     public Moniteur chefDePalanquee;
-    
+
     public LocalDate date;
-    
+
     public int profondeur;
-    
+
     public int duree;
-    
-    public ArrayList<Plongeur> participants = new ArrayList<>();
-    
+
+    public Set<Plongeur> participants = new HashSet<>();
+
     public Plongee(Site lieu, Moniteur chefDePalanquee, LocalDate date, int profondeur, int duree) {
         this.lieu = lieu;
         this.chefDePalanquee = chefDePalanquee;
@@ -28,14 +28,14 @@ public class Plongee {
         this.profondeur = profondeur;
         this.duree = duree;
     }
-    
+
     public void ajouteParticipant(Plongeur participant) {
-        
-        if (!participants.contains(participant) /*&& participant.getLicence().estValide(LocalDate.now())*/) {
+
+        if (!participants.contains(participant)) {
             participants.add(participant);
         }
     }
-    
+
     public LocalDate getDate() {
         return date;
     }
@@ -47,17 +47,31 @@ public class Plongee {
      *
      * @return vrai si la plongée est conforme
      */
-    public boolean estConforme() {
-        
+    /*public boolean estConforme() throws Exception {
+
         Boolean conforme = false;
-        
-        for(Plongeur p : participants) {
-            
-            conforme = p.getLicence().estValide(date);
-            
+
+        if (participants.isEmpty()) {
+            throw new Exception("Aucun plongeur dans la palanquée");
         }
-        
+        for (Plongeur p : participants) {
+
+            conforme = p.getLicence().estValide(date);
+            break;
+
+        }
+
         return conforme;
+    }*/
+    public boolean estConforme() {
+        boolean conforme = true;
+        for (Plongeur p : participants) {
+            if (!p.licences.get(p.licences.size()-1).estValide(this.getDate())) {
+                conforme = false;
+            }
+        }
+        return conforme;
+
     }
-    
+
 }

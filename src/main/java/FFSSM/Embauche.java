@@ -23,7 +23,7 @@ public class Embauche {
      * @param dateFin la date à laquelle cette embauche est terminée
      */
     public void terminer(LocalDate dateFin) {
-       fin = dateFin;
+       setFin(dateFin);
     }
     
     /**
@@ -31,7 +31,7 @@ public class Embauche {
      * @return vrai si terminée, faux sinon.
      */
     public boolean estTerminee() {
-        return (fin != null);
+        return (getFin() != null);
     }
     /**
      * Get the value of employeur

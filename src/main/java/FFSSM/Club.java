@@ -33,7 +33,7 @@ public class Club {
      *
      * @return l'ensemble des plongées non conformes
      */
-    public Set<Plongee> plongeesNonConformes() {
+    public Set<Plongee> plongeesNonConformes() throws Exception {
         Set<Plongee> p_conformes = new HashSet<>();
         
         for(Plongee p : plongees) {
@@ -47,11 +47,11 @@ public class Club {
 
     /**
      * Enregistre une nouvelle plongée organisée par ce club
-     *
-     * @param p la nouvelle plongée
      */
-    public void organisePlongee(Plongee p, Moniteur chefPalanquee, LocalDate date, int profondeur, int duree) {
-        Plongee plongee = new Plongee(new Site("Port Toulon", ""), chefPalanquee, date, profondeur, duree);
+    public void organisePlongee(Plongee p) {
+        if (!plongees.contains(p)){
+           plongees.add(p);
+        }
     }
 
     public Moniteur getPresident() {

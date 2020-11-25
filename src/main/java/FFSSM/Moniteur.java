@@ -4,12 +4,15 @@
 package FFSSM;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class Moniteur extends Personne {
 
     public int numeroDiplome;
+    
+    ArrayList<Embauche> emplois = new ArrayList<>();
 
     public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance, int numeroDiplome) {
         super(numeroINSEE, nom, prenom, adresse, telephone, naissance);
@@ -21,9 +24,11 @@ public class Moniteur extends Personne {
      * ce moniteur n'a pas d'employeur.
      * @return l'employeur actuel de ce moniteur sous la forme d'un Optional
      */
-    public Optional<Club> employeurActuel() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+    public Optional<Club> employeurActuel() throws Exception {
+        if(emplois.isEmpty()) throw new Exception("Aucun emploi");
+        Optional<Club> employeur;
+        employeur = emplois.get(emplois.size()-1).getEmployeur();
+        return emplois.get(emplois.size()-1).getEmployeur();
     }
     
     /**
@@ -32,8 +37,8 @@ public class Moniteur extends Personne {
      * @param debutNouvelle la date de début de l'embauche
      */
     public void nouvelleEmbauche(Club employeur, LocalDate debutNouvelle) {   
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");	    
+        Embauche embauche = new Embauche(LocalDate.now(), this, employeur);
+        emplois.add(embauche);
     }
 
     public List<Embauche> emplois() {

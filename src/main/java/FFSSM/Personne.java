@@ -1,32 +1,42 @@
 /**
  * @(#) Personne.java
  */
-
 package FFSSM;
 
 import java.time.LocalDate;
 
-public class Personne
-{
-	public String numeroINSEE;
-	
-	public String nom;
-	
-	public String prenom;
-	
-	public String adresse;
-	
-	public String telephone;
-	
-	public LocalDate naissance;
+public class Personne {
 
-    public Personne(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance) {
+    public String numeroINSEE;
+
+    public String nom;
+
+    public String prenom;
+
+    public String adresse;
+
+    public String telephone;
+
+    public LocalDate naissance;
+
+    public GroupeSanguin gs;
+
+    public Personne(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance, GroupeSanguin gs) {
         setNumeroINSEE(numeroINSEE); // Le mutateur fait le contrôle non null
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.telephone = telephone;
         this.naissance = naissance;
+        this.gs = gs;
+    }
+
+    public GroupeSanguin getGroupeSanguin() {
+        return gs;
+    }
+
+    public void setGroupeSanguin(GroupeSanguin gs) {
+        this.gs = gs;
     }
 
     public String getNumeroINSEE() {
@@ -35,8 +45,9 @@ public class Personne
 
     public void setNumeroINSEE(String numeroINSEE) {
         // Vérifier la cardinalité implicite [1]
-	if (null == numeroINSEE)
-		throw new IllegalArgumentException("numeroINSEE is null");
+        if (null == numeroINSEE) {
+            throw new IllegalArgumentException("numeroINSEE is null");
+        }
         this.numeroINSEE = numeroINSEE;
     }
 
@@ -78,5 +89,5 @@ public class Personne
 
     public void setNaissance(LocalDate naissance) {
         this.naissance = naissance;
-    }	
+    }
 }

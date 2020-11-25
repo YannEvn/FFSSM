@@ -14,8 +14,8 @@ public class Moniteur extends Personne {
     
     ArrayList<Embauche> emplois = new ArrayList<>();
 
-    public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance, int numeroDiplome) {
-        super(numeroINSEE, nom, prenom, adresse, telephone, naissance);
+    public Moniteur(String numeroINSEE, String nom, String prenom, String adresse, String telephone, LocalDate naissance, int numeroDiplome, GroupeSanguin gs) {
+        super(numeroINSEE, nom, prenom, adresse, telephone, naissance, gs);
         this.numeroDiplome = numeroDiplome;
     }
 
@@ -26,6 +26,7 @@ public class Moniteur extends Personne {
      */
     public Optional<Club> employeurActuel() throws Exception {
         if(emplois.isEmpty()) throw new Exception("Aucun emploi");
+        if(emplois.get(emplois.size()-1).estTerminee()) throw new Exception("Dernier emploi terminé");
         return Optional.ofNullable(emplois.get(emplois.size()-1).getEmployeur());
     }
     
@@ -35,7 +36,7 @@ public class Moniteur extends Personne {
      * @param debutNouvelle la date de début de l'embauche
      */
     public void nouvelleEmbauche(Club employeur, LocalDate debutNouvelle) {   
-        Embauche embauche = new Embauche(LocalDate.now(), this, employeur);
+        Embauche embauche = new Embauche(debutNouvelle, this, employeur);
         emplois.add(embauche);
     }
 

@@ -3,6 +3,8 @@
  */
 package FFSSM;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +17,8 @@ public class Club {
     public String adresse;
 
     public String telephone;
+    
+    ArrayList<Plongee> plongees = new ArrayList<>();
 
     public Club(Moniteur président, String nom, String telephone) {
         this.president = président;
@@ -30,8 +34,15 @@ public class Club {
      * @return l'ensemble des plongées non conformes
      */
     public Set<Plongee> plongeesNonConformes() {
-        // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        Set<Plongee> p_conformes = new HashSet<>();
+        
+        for(Plongee p : plongees) {
+            
+            if(!p.estConforme()) p_conformes.add(p);
+            
+        }
+        
+        return p_conformes;
     }
 
     /**
@@ -39,9 +50,8 @@ public class Club {
      *
      * @param p la nouvelle plongée
      */
-    public void organisePlongee(Plongee p) {
-        // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+    public void organisePlongee(Plongee p, Moniteur chefPalanquee, LocalDate date, int profondeur, int duree) {
+        Plongee plongee = new Plongee(new Site("Port Toulon", ""), chefPalanquee, date, profondeur, duree);
     }
 
     public Moniteur getPresident() {

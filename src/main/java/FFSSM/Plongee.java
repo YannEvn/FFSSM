@@ -31,7 +31,7 @@ public class Plongee {
     
     public void ajouteParticipant(Plongeur participant) {
         
-        if (!participants.contains(participant) && participant.getLicence().estValide(LocalDate.now())) {
+        if (!participants.contains(participant) /*&& participant.getLicence().estValide(LocalDate.now())*/) {
             participants.add(participant);
         }
     }
@@ -48,8 +48,16 @@ public class Plongee {
      * @return vrai si la plongée est conforme
      */
     public boolean estConforme() {
-        // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        
+        Boolean conforme = false;
+        
+        for(Plongeur p : participants) {
+            
+            conforme = p.getLicence().estValide(date);
+            
+        }
+        
+        return conforme;
     }
     
 }

@@ -26,9 +26,7 @@ public class Moniteur extends Personne {
      */
     public Optional<Club> employeurActuel() throws Exception {
         if(emplois.isEmpty()) throw new Exception("Aucun emploi");
-        Optional<Club> employeur;
-        employeur = emplois.get(emplois.size()-1).getEmployeur();
-        return emplois.get(emplois.size()-1).getEmployeur();
+        return Optional.ofNullable(emplois.get(emplois.size()-1).getEmployeur());
     }
     
     /**
@@ -42,8 +40,7 @@ public class Moniteur extends Personne {
     }
 
     public List<Embauche> emplois() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        return emplois;
     }
 
 }
